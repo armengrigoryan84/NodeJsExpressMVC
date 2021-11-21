@@ -1,0 +1,511 @@
+{
+    "tables": {
+        "accounts": {
+            "tableName": "accounts",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "name": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "status": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": "Active"
+                    },
+                    "seqType": "Sequelize.ENUM('Active', 'Inactive', 'Expired')"
+                },
+                "port": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "createdDate": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": {
+                            "val": "CURRENT_TIMESTAMP"
+                        }
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedDate": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.DATE"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "companies": {
+            "tableName": "companies",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "name": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "phone": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.STRING(25)"
+                },
+                "address": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "status": {
+                    "allowNull": true,
+                    "defaultValue": {
+                        "value": "Active"
+                    },
+                    "seqType": "Sequelize.ENUM('Active', 'Inactive', 'Deleted')"
+                },
+                "timeZone": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "createdDate": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": {
+                            "val": "CURRENT_TIMESTAMP"
+                        }
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedDate": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.DATE"
+                },
+                "modifiedBy": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "accountId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "accounts",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "locations": {
+            "tableName": "locations",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "name": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(25)"
+                },
+                "phone": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.STRING(25)"
+                },
+                "address": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.TEXT"
+                },
+                "lat": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "long": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "imge": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "companyId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "companies",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "createdDate": {
+                    "allowNull": true,
+                    "defaultValue": {
+                        "value": {
+                            "val": "CURRENT_TIMESTAMP"
+                        }
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedDate": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.DATE"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "roles": {
+            "tableName": "roles",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "name": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(25)"
+                },
+                "createdDate": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": {
+                            "val": "CURRENT_TIMESTAMP"
+                        }
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedDate": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "userLocations": {
+            "tableName": "userLocations",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "userId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "users",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "locationId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "locations",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "createdDate": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": {
+                            "val": "CURRENT_TIMESTAMP"
+                        }
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "users": {
+            "tableName": "users",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "firstName": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(25)"
+                },
+                "lastName": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(50)"
+                },
+                "email": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(50)"
+                },
+                "password": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "status": {
+                    "allowNull": true,
+                    "defaultValue": {
+                        "value": "active"
+                    },
+                    "seqType": "Sequelize.ENUM('active', 'blocked', 'deleted')"
+                },
+                "createdDate": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": {
+                            "val": "CURRENT_TIMESTAMP"
+                        }
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedDate": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.DATE"
+                },
+                "lastLoginDate": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.DATE"
+                },
+                "profilePicture": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "modifiedBy": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "roleId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "roles",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(11)"
+                }
+            },
+            "indexes": []
+        },
+        "userGroups": {
+            "tableName": "userGroups",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "accountId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "accounts",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "name": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(25)"
+                },
+                "createdBy": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "users",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "userGroupsToUser": {
+            "tableName": "userGroupsToUser",
+            "schema": {
+                "userId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "users",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "userGroupId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "userGroups",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(10)"
+                }
+            },
+            "indexes": []
+        },
+        "alerts": {
+            "tableName": "alert",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER(11)"
+                },
+                "accountId": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.INTEGER(10)",
+                    "references": {
+                        "model": "accounts",
+                        "key": "id"
+                    }
+                },
+                "type": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(25)"
+                },
+                "index": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "codeColor": {
+                    "type": "Sequelize.STRING(25)",
+                    "allowNull": false
+                },
+                "textColor": {
+                    "type": "Sequelize.STRING(25)",
+                    "allowNull": false
+                },
+                "hubLedColor": {
+                    "type": "Sequelize.STRING(25)",
+                    "allowNull": false
+                },
+                "hubBlink": {
+                    "type": "Sequelize.STRING(25)",
+                    "allowNull": false
+                },
+                "hubAudioBeep": {
+                    "type": "Sequelize.STRING(25)",
+                    "allowNull": false
+                },
+                "activatedMessage": {
+                    "type": "Sequelize.STRING(255)",
+                    "allowNull": false
+                },
+                "closedMessage": {
+                    "type": "Sequelize.STRING(255)",
+                    "allowNull": false
+                },
+                "createdDate": {
+                    "type": "Sequelize.DATE",
+                    "allowNull": false
+                },
+                "updatedDate": {
+                    "type": "Sequelize.DATE",
+                    "allowNull": false
+                },
+                "createdBy": {
+                    "type": "Sequelize.INTEGER(11)",
+                    "references": {
+                        "model": "users",
+                        "key": "id"
+                    }
+                },
+                "updatedBy": {
+                    "type": "Sequelize.INTEGER(11)",
+                    "references": {
+                        "model": "users",
+                        "key": "id"
+                    }
+                }
+            },
+            "indexes": []
+        },
+        "alertManagment": {
+            "tableName": "alertManagment",
+            "schema": {
+                "userGroupId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "userGroups",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "alertId": {
+                    "allowNull": false,
+                    "references": {
+                        "model": "alerst",
+                        "key": "id"
+                    },
+                    "seqType": "Sequelize.INTEGER(10)"
+                },
+                "canReceive": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "seqType": "Sequelize.BOOLEAN()"
+                },
+                "canCreate": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "seqType": "Sequelize.BOOLEAN()"
+                },
+                "canClose": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "seqType": "Sequelize.BOOLEAN()"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "revision": 1
+}
